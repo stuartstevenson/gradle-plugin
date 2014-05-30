@@ -1,0 +1,36 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt" xmlns:p="/lib/hudson/project">
+  <st:include page="configure-common.jelly" />
+
+  <p:config-buildWrappers />
+
+  <f:section title="${%Pre Steps}">
+    <f:block>
+      <f:hetero-list name="prebuilder" hasHeader="true"
+                     descriptors="${h.getBuilderDescriptors(it)}"
+                     items="${it.prebuilders}"
+                     addCaption="${%Add pre-build step}"/>
+    </f:block>
+  </f:section>
+
+  <f:section title="${%Build}">
+
+  </f:section>
+
+  <f:section title="${%Post Steps}">
+    <f:block>
+      <f:hetero-list name="postbuilder" hasHeader="true"
+                     descriptors="${h.getBuilderDescriptors(it)}"
+                     items="${it.postbuilders}"
+                     addCaption="${%Add post-build step}"/>
+    </f:block>
+  </f:section>
+
+  <j:if test="${!empty(reporters)}">
+    <f:descriptorList title="${%Build Settings}"
+                      descriptors="${reporters}"
+                      instances="${it.reporters.toMap()}" />
+  </j:if>
+
+  <p:config-publishers2 />
+</j:jelly>
