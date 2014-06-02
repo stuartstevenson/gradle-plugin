@@ -14,7 +14,17 @@
   </f:section>
 
   <f:section title="${%Build}">
-
+    <f:entry title="${%Tasks}" field="tasks">
+        <f:textbox default="build"/>
+    </f:entry>
+    <f:entry title="${%Build File}"
+             field="buildFile"
+             description="
+                  Specify Gradle build file to run.
+                  Also, &lt;a href='${rootURL}/env-vars.html' target=_new>some environment variables are available to the build script&lt;/a>
+                  ">
+      <f:textbox default="build.gradle"/>
+    </f:entry>
   </f:section>
 
   <f:section title="${%Post Steps}">

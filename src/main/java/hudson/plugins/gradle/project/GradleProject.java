@@ -17,13 +17,17 @@ import jenkins.model.Jenkins;
  */
 public class GradleProject extends AbstractProject<GradleProject, GradleBuild> implements TopLevelItem {
 
+	private String tasks;
+	private String buildFile;
+
 	private DescribableList<Builder,Descriptor<Builder>> prebuilders =
 			new DescribableList<Builder,Descriptor<Builder>>(this);
 
 	private DescribableList<Builder,Descriptor<Builder>> postbuilders =
 			new DescribableList<Builder,Descriptor<Builder>>(this);
 
-	protected GradleProject(ItemGroup parent, String name) {
+	protected GradleProject(ItemGroup parent,
+							String name) {
 		super(parent, name);
 	}
 
@@ -51,12 +55,32 @@ public class GradleProject extends AbstractProject<GradleProject, GradleBuild> i
 
 	}
 
+	@SuppressWarnings("unused")
 	public DescribableList<Builder,Descriptor<Builder>> getPrebuilders() {
 		return prebuilders;
 	}
+	@SuppressWarnings("unused")
 
 	public DescribableList<Builder,Descriptor<Builder>> getPostbuilders() {
 		return postbuilders;
+	}
+
+	@SuppressWarnings("unused")
+	public String getBuildFile() {
+		return buildFile;
+	}
+
+	@SuppressWarnings("unused")
+	public String getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(String tasks) {
+		this.tasks = tasks;
+	}
+
+	public void setBuildFile(String buildFile) {
+		this.buildFile = buildFile;
 	}
 
 	@Extension
